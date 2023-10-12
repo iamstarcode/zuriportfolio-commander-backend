@@ -72,10 +72,8 @@ export default class ProductController extends BaseController {
       return this.error(res, '--product/shop-notfound', 'Failed to crete product, shop not found.', 404);
     }
 
-    // check if user exists
-
     const placeHolderImg = 'https://placehold.co/600x400/EEE/31343C?text=placeholder';
-    //const placeHolderImg = 'https://placehold.co/600x400/EEE/31343C?text=placeholder';
+
     const product = await prisma.product.create({
       data: {
         id: uuidv4(),
@@ -89,10 +87,6 @@ export default class ProductController extends BaseController {
         price: parseFloat(price),
         tax: parseFloat(tax),
         category_id: parseInt(categoryId),
-        discount_price: discountPrice ?? 0,
-        quantity,
-        price,
-        tax: tax ?? 0,
         image: {
           create: {
             url: image.url ?? placeHolderImg,

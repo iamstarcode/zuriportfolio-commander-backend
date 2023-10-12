@@ -136,12 +136,13 @@ model product_image {
 
 model product_category {
     id         Int      @id @default(autoincrement())
+    user_id    String
     name       String
     createdAt  DateTime @default(now())
 
     product    product[]
     sub_categories product_sub_category[]
-    sub_categories product_sub_category[]
+    
     user           user                   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
